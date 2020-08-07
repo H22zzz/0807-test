@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    /* html,body{} */
+    form{
+        width: 400px;
+        height: 200px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 99;
+        margin: -100px 0 -200px 0;
+        background: #fff;
+    }
+    form span{
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 10px;
+        cursor: pointer;
+    }
+    .mask{
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.4;
+        position: absolute;
+        left: 0;top: 0;
+    }
+</style>
+<body>
+    <span class="box">登录</span>
+    <form action="page.html">
+        <span class="close">x</span>
+        <p>账号：<input type="text" class="user"></p>
+        <p>密码：<input type="text" class="pw"></p>
+        <p>记住账号：<input type="checkbox" class="auto"></p>
+        <p><input type="submit" value="登录" class="login"></p>
+
+    </form>
+    <div class="mask"></div>
+
+    <script src="./js/utils.js"></script>
+    <script>
+        var box = $1('.box');
+        var close = $1('.close');
+        var user = $1('.user');
+        var pw = $1('.pw');
+        var auto = $1('.auto');
+        var form = $1('.form');
+        var mask = $1('.mask');
+
+        box.onclick = function (){
+            //显示登录框和蒙板层
+            form.style.display = 'block';
+            mask.style.display = 'block';
+
+            //判断之前是否有存储账号密码
+            if (getCookie('username')) {
+                user.value = getCookie('username');
+                pw.value = getCookie('password');
+                auto.checked =true;
+            }
+        }
+
+        close.onclick = function (){
+            //隐藏登录框和蒙板层
+            form.style.display = 'none';
+            mask.style.display = 'none';
+        }
+
+        form.onsubmit = function (){
+            if (!user.value || !pw.value) {
+                alert('输入不能为空');
+                return false;
+            }
+            if (auto.checked) {
+                setCookie({
+                    key: 'username',
+                    val: user.value,
+                    days: 7
+                });
+                setCookie({
+                    key: 'password',
+                    val: pw.value,
+                    days: 7
+                });
+            } else {
+                removeCookie('username');
+                removeCookie('password');
+            }
+        }
+    </script>
+</body>
+</html>
