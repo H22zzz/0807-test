@@ -70,3 +70,15 @@
 ---
 ## git merge 分支名
 1. 合并分支
+---
+## git branch -d 分支名
+1. 删除分支
+---
+## 配置秘钥
+1. 生成秘钥ssh-keygen -t rsa -C "your email"
+---
+## git remote rm origin
+1. 删除关联
+---
+## 忽略列表
+1. 创建文件 .gitignore
