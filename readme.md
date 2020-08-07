@@ -77,6 +77,7 @@
 ---
 ## git branch -d 分支名
 1. 删除分支
+2. 111
 ---
 ## 配置秘钥
 1. 生成秘钥ssh-keygen -t rsa -C "your email"
